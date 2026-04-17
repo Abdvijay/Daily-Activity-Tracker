@@ -1,10 +1,11 @@
 from django.http import JsonResponse
 from .models import Task
 from users.models import User
+from django.views.decorators.csrf import csrf_exempt
 import json
 
 
-# ADD TASK
+@csrf_exempt
 def add_task(request):
     if request.method == "POST":
         data = json.loads(request.body)
@@ -19,7 +20,7 @@ def add_task(request):
         return JsonResponse({"message": "Task Added"})
 
 
-# GET TASKS
+@csrf_exempt
 def get_tasks(request):
     user_id = request.GET.get('user_id')
 
@@ -35,11 +36,8 @@ def get_tasks(request):
     return JsonResponse(data, safe=False)
 
 
-# DELETE TASK
-def delete_task(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-
-        Task.objects.get(id=data['task_id']).delete()
-
+@csrf_exempt
+def delete_task(request,id):
+    if request.method == "DELETE":
+        Task.objects.get(id=id).delete()
         return JsonResponse({"message": "Task Deleted"})

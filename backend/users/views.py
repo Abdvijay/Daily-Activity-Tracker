@@ -1,9 +1,10 @@
 from django.http import JsonResponse
 from .models import User
+from django.views.decorators.csrf import csrf_exempt
 import json
 
 
-# REGISTER
+@csrf_exempt
 def add_user(request):
     if request.method == "POST":
         data = json.loads(request.body)
@@ -18,7 +19,7 @@ def add_user(request):
         return JsonResponse({"message": "User Registered"})
 
 
-# LOGIN
+@csrf_exempt
 def login_user(request):
     if request.method == "POST":
         data = json.loads(request.body)

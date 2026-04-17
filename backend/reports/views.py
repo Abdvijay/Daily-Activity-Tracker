@@ -1,9 +1,9 @@
 from django.http import JsonResponse
 from .models import TaskStatus
 import json
+from django.views.decorators.csrf import csrf_exempt
 
-
-# MARK TASK COMPLETE
+@csrf_exempt
 def update_status(request):
     if request.method == "POST":
         data = json.loads(request.body)
@@ -18,7 +18,7 @@ def update_status(request):
         return JsonResponse({"message": "Status Updated"})
 
 
-# REPORT
+@csrf_exempt
 def get_report(request):
     user_id = request.GET.get('user_id')
 

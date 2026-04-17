@@ -1,0 +1,13 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background: #222;
+    color: white;
+    padding: 10px;
+}
+
+.center a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+}
