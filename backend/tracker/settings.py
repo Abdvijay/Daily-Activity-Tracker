@@ -57,8 +57,6 @@ MIDDLEWARE = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-AUTH_USER_MODEL = 'users.User'
-
 ROOT_URLCONF = 'tracker.urls'
 
 TEMPLATES = [
